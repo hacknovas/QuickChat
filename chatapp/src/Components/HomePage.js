@@ -1,4 +1,4 @@
-import { Container, Box, Text, TabPanels, TabPanel, Tab, TabList, Tabs } from '@chakra-ui/react'
+import {TabPanels, TabPanel, Tab, TabList, Tabs } from '@chakra-ui/react'
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from '../Authentication/Login';
@@ -16,7 +16,7 @@ export default function HomePage() {
 
     return (
         <>
-            <div className=" d-flex align-items-center justify-content-center " style={{"height":"100vh"}}>
+            <div className=" d-flex align-items-center justify-content-center  " style={{"height":"100vh",backgroundColor:""}}>
 
                 <div className='px-10'>
                     <Tabs variant='soft-rounded' colorScheme='blue'>

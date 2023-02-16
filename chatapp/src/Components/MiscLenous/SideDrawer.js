@@ -95,57 +95,56 @@ export default function SideDrawer() {
 
     return (
         <>
-            <div className="">
-                <img src="./logo.png" alt="Talk-A-Tive" style={{"height":"50px","position":"absolute","marginLeft":"25px","top":"15px"}} />
-            </div>
-            <div className="container text-center bg-light rounded ">
-                <div className="row">
-                    <div className="col-4">
+            <div className="d-flex flex-wrap" >
+                <div className=" container-fluid text-center bg-light shadow py-2 mb-2 rounded" >
+                    <div className="d-flex flex-wrap align-items justify-content-evenly">
+                        <div className="me-auto">
+                                <img src="./logo.png" alt="Talk-A-Tive" style={{ "height": "8vmin", display: "inline" }} />
+                                <div className="btn">Talk@Tive</div>
+                        </div>
 
-                        <Tooltip label="Search Users to chat" >
-                            <Button variant="ghost" onClick={onOpen}>
-                                <i className="fas fa-search"></i>
-                                <Text d={{ base: "none", md: "flex" }} px={4}>
-                                    Search User
-                                </Text>
-                            </Button>
-                        </Tooltip>
-                    </div>
+                        <div className="mx-1">
 
-
-                    <div className="col-4">
-                        <Text fontSize="2xl" fontFamily="Work sans">
-                            Talk-A-Tive
-                        </Text>
-                    </div>
+                            <Tooltip label="Search Users to chat" >
+                                <Button variant="ghost" onClick={onOpen}>
+                                    <i className="fas fa-search"></i>
+                                    <Text d={{ base: "none", md: "flex" }} >
+                                        Search User
+                                    </Text>
+                                </Button>
+                            </Tooltip>
+                        </div>
 
 
-                    <div className='col-4'>
-                        <Menu>
-                            <MenuButton p={1}>
-                                <BellIcon fontSize="2xl" m={1} />
-                                Bell Icon
-                            </MenuButton>
 
-                        </Menu>
-                        {/* // */}
-                        <Menu>
-                            <MenuButton as={Button} bg="white" rightIcon={""}>
-                                <Avatar
-                                    size="sm"
-                                    cursor="pointer"
-                                    name={user.name}
-                                    src={user.pic}
-                                />
-                            </MenuButton>
-                            <MenuList>
-                                <ProfileModel user={user}>
-                                    <MenuItem>My Profile</MenuItem>{" "}
-                                </ProfileModel>
-                                <MenuDivider />
-                                <MenuItem onClick={logoutHandler}>Logout</MenuItem>
-                            </MenuList>
-                        </Menu>
+
+                        <div className='mx-1'>
+                            {/* <Menu>
+                                <MenuButton p={1}>
+                                    <BellIcon fontSize="2xl" m={1} />
+                                    Bell Icon
+                                </MenuButton>
+
+                            </Menu> */}
+                            {/* // */}
+                            <Menu>
+                                <MenuButton as={Button} bg="white" rightIcon={""}>
+                                    <Avatar
+                                        size="sm"
+                                        cursor="pointer"
+                                        name={user.name}
+                                        src={user.pic}
+                                    />
+                                </MenuButton>
+                                <MenuList>
+                                    <ProfileModel user={user}>
+                                        <MenuItem>My Profile</MenuItem>{" "}
+                                    </ProfileModel>
+                                    <MenuDivider />
+                                    <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                                </MenuList>
+                            </Menu>
+                        </div>
                     </div>
                 </div>
             </div>

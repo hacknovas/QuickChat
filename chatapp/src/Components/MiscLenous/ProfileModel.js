@@ -14,49 +14,33 @@ export default function ProfileModel({ user, children }) {
             ) : (
                 <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
             )}
-            <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
-                <ModalOverlay />
-                <ModalContent >
-                    <div className="container px-0 " >
-                        <div className="row">
-                            <div className="col-5">
 
-                                <ModalBody
-                                    d="flex"
-                                    flexDir="column"
-                                    alignItems="center"
-                                    justifyContent="space-between"
-                                >
+            <Modal onClose={onClose} isOpen={isOpen} isCentered  >
+                <ModalContent >
+                    <div className="container p-0" >
+                        <div className="d-flex flex-wrap">
+                            <div className="">
+                                <ModalBody>
                                     <Image
                                         borderRadius="full"
-                                        boxSize="150px"
+                                        boxSize="15vmin"
                                         src={user.pic}
                                     />
                                 </ModalBody>
                             </div>
-                            <div className="col-7">
-
-                                <ModalHeader
-                                    fontSize="40px"
-                                    fontFamily="Work sans"
-                                    d="flex"
-                                    justifyContent="center"
-                                >
-                                    {user.name}
-                                </ModalHeader>
-                                <Text
-                                    fontSize={{ base: "20px" }}
-                                    fontFamily="Work sans"
-                                >
+                            <div className="d-flex justify-content-center flex-column">
+                                <b>
+                                    <div>{user.name}</div>
+                                </b>
+                                <div>
                                     Email: {user.email}
-                                </Text>
-
+                                </div>
                             </div>
                         </div>
                     </div>
                     {/* <ModalCloseButton /> */}
                     <ModalFooter>
-                        <Button onClick={onClose}>Close</Button>
+                        <div className="btn border" onClick={onClose}>Close</div>
                     </ModalFooter>
 
                 </ModalContent>

@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-        <Routes>
+        <Routes>  
           <Route path="/" element={<HomePage />} exact />
           <Route path="/chats" element={<ChatPage />} />
         </Routes>
@@ -17,7 +17,3 @@ function App() {
 }
 
 export default App;
-
-
-
-

@@ -67,7 +67,7 @@ export default function Login() {
     }
 
     return (
-        <VStack className='text-light' divider={<StackDivider borderColor='gray.200' />} spacing="5px" align='stretch'>
+        <VStack className='' divider={<StackDivider borderColor='gray.200' />} spacing="5px" align='stretch'>
 
             <FormControl id="_email" isRequired>
                 <FormLabel>Email</FormLabel>
@@ -83,16 +83,14 @@ export default function Login() {
                     <Input placeholder={password} type={show ? "text" : "password"} onChange={(e) => {
                         setpass(e.target.value)
                     }}></Input>
-                    <InputRightElement>
-                        <Button onClick={() => {
+                    <InputRightElement >
+                        <Button  onClick={() => {
                             show ? setshow(false) : setshow(true);
-                        }}>
+                        }} className="bg-secondary opacity-50" >
                         </Button>
                     </InputRightElement>
                 </InputGroup>
             </FormControl>
-
-
             <Button className=' text-dark' onClick={submitHandler}>
                 Login
             </Button>

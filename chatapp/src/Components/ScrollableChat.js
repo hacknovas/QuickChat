@@ -1,6 +1,5 @@
 import { Avatar, Tooltip } from '@chakra-ui/react';
 import React from 'react'
-import ScrollableFeed from "react-scrollable-feed";
 import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from '../config/ChatLogic';
 import { ChatState } from '../Context/chatProvider';
 

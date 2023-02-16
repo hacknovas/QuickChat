@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react';
+import { Button, FormControl,  Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { ChatState } from '../../Context/chatProvider';
@@ -128,7 +128,7 @@ export default function GroupChatModal({ children }) {
 
     return (
         <>
-            <span onClick={onOpen} style={{"cursor":"pointer"}}>  +New</span>
+            <span onClick={onOpen} style={{"cursor":"pointer"}}>+</span>
 
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
                 <ModalOverlay />

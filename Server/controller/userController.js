@@ -5,8 +5,6 @@ const generateTokent = require("../config/generateToken");
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
-
-
     if (!name || !email || !password) {
         throw new Error("Please Enter All fields");
     }
@@ -37,10 +35,8 @@ const registerUser = async (req, res) => {
 
 
 const authuser = async (req, res) => {
-    // console.log("mahi#####")
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    // console.log(user)
     if (user && (await user.matchPass(password))) {
         res.status(201).json({
             _id: user._id,

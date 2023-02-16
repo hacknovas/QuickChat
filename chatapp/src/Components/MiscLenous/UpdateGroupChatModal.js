@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Toast, useDisclosure, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react'
 import axios from "axios";
 import UserListItem from "../UserAvtar/UserListItem";
 import React, { useState } from 'react'
@@ -209,18 +209,17 @@ export default function UpdateGroupChatModal({ fetchAgain, setfetchAgain, fetchM
     return (
         <>
             <Button onClick={onOpen}>
-                <img src="./three_dots.png" alt="NA" style={{ "height": "20px" }} />
+                <img src="./three_dots.png" alt="NA" style={{ "height": "2vh" }} />
             </Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
+            <Modal isOpen={isOpen} onClose={onClose} className="border">
                 <ModalContent>
-                    <ModalHeader>{selectedChat.chatName}</ModalHeader>
+                    <div className='btn border-top '><b>{selectedChat.chatName}</b></div>
                     <hr />
                     <ModalCloseButton />
                     <ModalBody>
-
                         <Box w="100%" d="flex" flexWrap="wrap" pb={3}>
+                            <div className="badge text-dark">Group Members:</div><br />
                             {selectedChat.user.map((u) => (
                                 <UserBadegeItem
                                     key={u._id}
@@ -233,7 +232,7 @@ export default function UpdateGroupChatModal({ fetchAgain, setfetchAgain, fetchM
 
                         <FormControl className='d-flex flex-col'>
                             <Input
-                                placeholder="Chat Name"
+                                placeholder="Update Chat Name"
                                 mb={3}
                                 value={groupChatName}
                                 onChange={(e) => setGroupChatName(e.target.value)}
@@ -259,15 +258,15 @@ export default function UpdateGroupChatModal({ fetchAgain, setfetchAgain, fetchM
 
 
                         {
-                            loading ? <div style={{"height":"0vh"}}>Loading</div> :
-                                <div className="overflow-auto" style={{"height":"30vh"}}  >
+                            loading ? <div style={{ "height": "0vh" }}>Loading</div> :
+                                <div className="overflow-auto" style={{ "height": "30vh" }}  >
                                     {
-                                    (
-                                        searchResult?.slice(0, 4).map((user) => (
-                                            <UserListItem key={user._id} user={user} handleFunction={() => handleAddUser(user)} />
-                                        ))
-                                    )
-                                }
+                                        (
+                                            searchResult?.slice(0, 4).map((user) => (
+                                                <UserListItem key={user._id} user={user} handleFunction={() => handleAddUser(user)} />
+                                            ))
+                                        )
+                                    }
                                 </div>
                         }
 

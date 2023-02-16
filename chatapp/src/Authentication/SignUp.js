@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, StackDivider, useToast, VStack } from '@chakra-ui/react'
+import {  Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, StackDivider, useToast, VStack } from '@chakra-ui/react'
 import axios from "axios";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,9 @@ export default function SignUp() {
     const [email, setemail] = useState('')
     const [password, setpass] = useState('')
     const [confpass, setconfpass] = useState('')
-    const [pic, setpic] = useState();
     const [loading, setloading] = useState(false);
     const toast = useToast();
     const navigate = useNavigate();
-
 
     let postDetails = (pics) => {
         // setloading(true);
@@ -81,7 +79,7 @@ export default function SignUp() {
 
     return (
         <>
-            <VStack className='text-light' divider={<StackDivider borderColor='blue.200' />} spacing="5px" align='stretch'>
+            <VStack className='' divider={<StackDivider borderColor='blue.200' />} spacing="5px" align='stretch'>
                 <FormControl id="name" isRequired>
                     <FormLabel>Name</FormLabel>
                     <Input placeholder='Enter Name' onChange={(e) => {
@@ -106,7 +104,7 @@ export default function SignUp() {
                         <InputRightElement>
                             <Button onClick={() => {
                                 show ? setshow(false) : setshow(true);
-                            }}>
+                            }} className="bg-secondary opacity-50" >
                             </Button>
                         </InputRightElement>
                     </InputGroup>
@@ -121,16 +119,16 @@ export default function SignUp() {
                     </InputGroup>
                 </FormControl>
 
-                <FormControl id='pics'>
+                {/* <FormControl id='pics'>
                     <FormLabel>
                         <Input type="file" accept='image/' onChange={(e) => {
                             postDetails(e.target.files[0]);
                         }}>
                         </Input>
                     </FormLabel>
-                </FormControl>
+                </FormControl> */}
 
-                <Button className=' text-dark' onClick={submitHandler}>
+                <Button className='mt-3 text-dark' onClick={submitHandler}>
                     SignUp
                 </Button>
             </VStack>
