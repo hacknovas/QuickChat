@@ -98,9 +98,9 @@ export default function SideDrawer() {
             <div className="d-flex flex-wrap" >
                 <div className=" container-fluid text-center bg-light shadow py-2 mb-2 rounded" >
                     <div className="d-flex flex-wrap align-items justify-content-evenly">
-                        <div className="me-auto">
+                        <div className="me-auto d-flex"style={{cursor:"pointer"}}>
                                 <img src="./logo.png" alt="Talk-A-Tive" style={{ "height": "8vmin", display: "inline" }} />
-                                <div className="btn">Talk@Tive</div>
+                                <div className="container mt-3">Talk@Tive</div>
                         </div>
 
                         <div className="mx-1">
@@ -109,7 +109,7 @@ export default function SideDrawer() {
                                 <Button variant="ghost" onClick={onOpen}>
                                     <i className="fas fa-search"></i>
                                     <Text d={{ base: "none", md: "flex" }} >
-                                        Search User
+                                        Search Freinds
                                     </Text>
                                 </Button>
                             </Tooltip>
