@@ -1,3 +1,4 @@
+import { LineWave } from "react-loader-spinner";
 import {
   Button,
   FormControl,
@@ -23,7 +24,6 @@ export default function Login() {
   const toast = useToast();
 
   const submitHandler = async () => {
-    console.log(email, password);
     setloading(true);
     if (!email || !password) {
       toast({
@@ -81,36 +81,51 @@ export default function Login() {
     >
       <FormControl id="_email" isRequired>
         <FormLabel>Email</FormLabel>
-        <Input
-          placeholder={email}
-          onChange={(e) => {
-            setemail(e.target.value);
-          }}
-        ></Input>
+        <div>
+          <input
+            className="p-2 w-100"
+            type="email"
+            placeholder={email == "" ? "Email" : email}
+            onChange={(e) => {
+              setemail(e.target.value);
+            }}
+          ></input>
+        </div>
       </FormControl>
 
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup>
-          <Input
-            placeholder={password}
-            type={show ? "text" : "password"}
-            onChange={(e) => {
-              setpass(e.target.value);
-            }}
-          ></Input>
+          <div>
+            <input
+              className="p-2 w-100"
+              placeholder={password == "" ? "Password" : password}
+              type={show ? "text" : "password"}
+              onChange={(e) => {
+                setpass(e.target.value);
+              }}
+            ></input>
+          </div>
           <InputRightElement>
             <Button
               onClick={() => {
                 show ? setshow(false) : setshow(true);
               }}
-            >.</Button>
+            >
+              <i class="fa fa-eye"></i>
+            </Button>
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <Button className=" text-dark" onClick={submitHandler}>
-        Sign in
-      </Button>
+      {loading == false ? (
+        <Button className=" text-dark" onClick={submitHandler}>
+          Sign in
+        </Button>
+      ) : (
+        <div className="w-100">
+          <LineWave color="grey" ariaLabel="line-wave" visible={true} />
+        </div>
+      )}
     </VStack>
   );
 }

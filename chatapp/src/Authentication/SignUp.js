@@ -1,3 +1,5 @@
+import { LineWave } from "react-loader-spinner";
+
 import {
   Button,
   FormControl,
@@ -47,6 +49,8 @@ export default function SignUp() {
         isClosable: true,
         position: "bottom",
       });
+      setloading(false);
+
       return;
     }
     if (password !== confpass) {
@@ -57,6 +61,8 @@ export default function SignUp() {
         isClosable: true,
         position: "bottom",
       });
+      setloading(false);
+
       return;
     }
 
@@ -96,69 +102,84 @@ export default function SignUp() {
       >
         <FormControl id="name" isRequired>
           <FormLabel>Name</FormLabel>
-          <Input
+          <input
+            className="p-2 w-100"
             placeholder="Enter Name"
             onChange={(e) => {
               setname(e.target.value);
             }}
-          ></Input>
+          ></input>
         </FormControl>
 
         <FormControl id="email" isRequired>
           <FormLabel>Email</FormLabel>
-          <Input
+          <input
+            className="p-2 w-100"
             placeholder="Enter Email"
+            type="email"
             onChange={(e) => {
               setemail(e.target.value);
             }}
-          ></Input>
+          ></input>
         </FormControl>
 
         <FormControl id="_password" isRequired>
           <FormLabel>Password</FormLabel>
-          <InputGroup>
-            <Input
-              type={show ? "text" : "password"}
-              placeholder="Enter Pass"
-              onChange={(e) => {
-                setpass(e.target.value);
-              }}
-            ></Input>
-            <InputRightElement>
+          <inputGroup className="d-flex flex-col">
+            <div>
+              <input
+                className="p-2 w-100"
+                type={show ? "text" : "password"}
+                placeholder="Enter Password"
+                onChange={(e) => {
+                  setpass(e.target.value);
+                }}
+              ></input>
+            </div>
+            <inputRightElement>
               <Button
                 onClick={() => {
                   show ? setshow(false) : setshow(true);
                 }}
-              ></Button>
-            </InputRightElement>
-          </InputGroup>
+              >
+                <i class="fa fa-eye"></i>
+              </Button>
+            </inputRightElement>
+          </inputGroup>
         </FormControl>
 
         <FormControl id="confirm_password" isRequired>
           <FormLabel>Confirm Password</FormLabel>
-          <InputGroup>
-            <Input
+          <inputGroup>
+            <input
+              className="p-2 w-100"
               type="password"
-              placeholder="Enter Pass"
+              placeholder="Enter Password"
               onChange={(e) => {
                 setconfpass(e.target.value);
               }}
-            ></Input>
-          </InputGroup>
+            ></input>
+          </inputGroup>
         </FormControl>
 
         {/* <FormControl id='pics'>
                     <FormLabel>
-                        <Input type="file" accept='image/' onChange={(e) => {
+                        <input type="file" accept='image/' onChange={(e) => {
                             postDetails(e.target.files[0]);
                         }}>
-                        </Input>
+                        </input>
                     </FormLabel>
                 </FormControl> */}
 
-        <Button className="mt-3 text-dark" onClick={submitHandler}>
-          SignUp
-        </Button>
+        {loading == false ? (
+          <Button className="mt-3 text-dark" onClick={submitHandler}>
+            SignUp
+          </Button>
+        ) : (
+          <div className="w-100">
+            <LineWave color="grey" ariaLabel="line-wave" visible={true} />
+          </div>
+        )}
       </VStack>
     </>
   );

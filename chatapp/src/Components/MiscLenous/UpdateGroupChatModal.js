@@ -26,6 +26,8 @@ export default function UpdateGroupChatModal({
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [userVal, setUserVal] = useState("");
+
   const [groupChatName, setGroupChatName] = useState("");
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -145,18 +147,23 @@ export default function UpdateGroupChatModal({
       };
 
       const { data } = await axios.get(`/api/user?search=${search}`, config);
-      // console.log(data);
+
+      if (data.length == 0) {
+        throw new Error("No match");
+      }
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
       toast({
-        title: "Error Occured!",
-        description: "Failed to Load the Search Results",
-        status: "error",
+        title: "No match found!",
+        description: "Search again...",
         duration: 5000,
         isClosable: true,
-        position: "bottom-left",
+        position: "bottom-center",
       });
+      setLoading(false);
+
     }
   };
 
@@ -251,23 +258,26 @@ export default function UpdateGroupChatModal({
                 value={groupChatName}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
-              <Button
-                variant="solid"
-                colorScheme="blue"
-                ml={1}
-                isLoading={renameloading}
-                onClick={handleRename}
-              >
+              <Button ml={1} isLoading={renameloading} onClick={handleRename}>
                 Update
               </Button>
             </FormControl>
             <br />
-            <FormControl>
+            <FormControl className="d-flex flex-col">
               <Input
                 placeholder="Add User to group"
                 mb={1}
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={(e) => setUserVal(e)}
               />
+
+              <Button
+                ml={1}
+                onClick={() => {
+                  handleSearch(userVal);
+                }}
+              >
+                Search
+              </Button>
             </FormControl>
 
             {loading ? (
