@@ -8,8 +8,14 @@ import ProfileModel from "./MiscLenous/ProfileModel";
 import UpdateGroupChatModal from "./MiscLenous/UpdateGroupChatModal";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:8000";
+var socket, selectedChatCompare;
 
 export default function SingleChat({ fetchAgain, setfetchAgain }) {
+  const [socketConnected, setSocketConnected] = useState(false);
+
   const { user, selectedChat, setSelectedChat } = ChatState();
 
   const [messages, setMessages] = useState([]);
@@ -19,7 +25,29 @@ export default function SingleChat({ fetchAgain, setfetchAgain }) {
   const toast = useToast();
 
   useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connection", () => {
+      setSocketConnected(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      if (
+        !selectedChatCompare ||
+        selectedChatCompare._id != newMessageRecieved.chat._id
+      ) {
+      } else {
+        setMessages([...messages, newMessageRecieved]);
+      }
+    });
+  });
+
+  useEffect(() => {
     fetchMessage();
+
+    selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
   const fetchMessage = async () => {
@@ -42,6 +70,8 @@ export default function SingleChat({ fetchAgain, setfetchAgain }) {
       // console.log(messages);
       setMessages(data);
       setLoading(false);
+
+      socket.emit("join chat", selectedChat._id);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -75,6 +105,8 @@ export default function SingleChat({ fetchAgain, setfetchAgain }) {
         );
         console.log(data);
         setMessages([...messages, data]);
+
+        socket.emit("new Message", data);
       } catch (error) {
         toast({
           title: "Error Occured!",
