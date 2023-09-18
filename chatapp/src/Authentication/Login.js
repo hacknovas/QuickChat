@@ -117,13 +117,19 @@ export default function Login() {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      {loading == false ? (
+      {loading == true ? (
         <Button className=" text-dark" onClick={submitHandler}>
           Sign in
         </Button>
       ) : (
-        <div className="w-100">
-          <LineWave color="grey" ariaLabel="line-wave" visible={true} />
+        <div className="w-100 "
+            style={{ justifyContent: "center",display:"flex" }}
+        >
+          <LineWave
+            color="grey"
+            ariaLabel="line-wave"
+            visible={true}
+          />
         </div>
       )}
     </VStack>
