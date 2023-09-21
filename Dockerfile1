@@ -1,0 +1,15 @@
+FROM node:latest
+
+WORKDIR /app
+
+RUN mkdir /Frontend
+
+COPY chatapp /app/Frontend
+
+WORKDIR /app/Frontend
+
+RUN npm install --force
+
+WORKDIR /app/Frontend/src
+
+CMD ["npm","run","start"]

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - talkative_nw
+    volumes:
+      - f_volume:/home/vector/Desktop/MyGitRepoProj/TalkATive_Data/front_data
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - talkative_nw
+    volumes:
+      - b_volume:/home/vector/Desktop/MyGitRepoProj/TalkATive_Data/back_data
+
+networks:
+  talkative_nw:
+
+volumes:
+  f_volume:
+  b_volume:

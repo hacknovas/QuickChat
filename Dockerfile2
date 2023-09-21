@@ -1,0 +1,15 @@
+FROM node:latest
+
+WORKDIR /app
+
+RUN mkdir /Backend
+
+COPY Server /app/Backend
+
+WORKDIR /app/Backend
+
+RUN npm install --force
+
+WORKDIR /app/Backend
+
+CMD node index.js
