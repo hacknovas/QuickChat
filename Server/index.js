@@ -13,7 +13,7 @@ app.use(express.json());
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.send(`Running at ${PORT}...`);
 });
 
 app.use("/api/user", userRoutes);
