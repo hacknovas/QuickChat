@@ -1,12 +1,10 @@
 import { LineWave } from "react-loader-spinner";
+import validator from "validator";
 
 import {
   Button,
   FormControl,
   FormLabel,
-  Input,
-  InputGroup,
-  InputRightElement,
   StackDivider,
   useToast,
   VStack,
@@ -18,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 export default function SignUp() {
   const [show, setshow] = useState(false);
 
+  const [showWarnE, setshowWarnE] = useState(false);
+  const [showWarnP, setshowWarnP] = useState(false);
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpass] = useState("");
@@ -53,11 +53,38 @@ export default function SignUp() {
 
       return;
     }
+
+    if(!validator.isEmail(email)){
+      toast({
+        title: "Enter Valid Email",
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setloading(false);
+
+      return;
+    }
+
+    if(!validator.isStrongPassword(password)){
+      toast({
+        title: "Password Must be \n minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1",
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setloading(false);
+
+      return;
+    }
+
     if (password !== confpass) {
       toast({
         title: "Passwords Do Not Match",
         status: "warning",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
         position: "bottom",
       });
@@ -81,14 +108,16 @@ export default function SignUp() {
       toast({
         title: "Registration Successful",
         status: "success",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
         position: "bottom",
       });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
-      setloading(false);
-      navigate("/chats");
+      setTimeout(() => {
+        setloading(false);
+        navigate("/chats");
+      }, 1000);
     } catch (error) {}
   };
 
@@ -99,7 +128,7 @@ export default function SignUp() {
         divider={<StackDivider borderColor="blue.200" />}
         spacing="5px"
         align="stretch"
-      >
+        >
         <FormControl id="name" isRequired>
           <FormLabel>Name</FormLabel>
           <input
@@ -118,15 +147,18 @@ export default function SignUp() {
             placeholder="Enter Email"
             type="email"
             onChange={(e) => {
-              setemail(e.target.value);
+              setemail(e.target.value); 
             }}
           ></input>
+          <div className={showWarnE ? "badge badge-danger" : "d-none"}>
+            Enter Valid Email
+          </div>
         </FormControl>
 
         <FormControl id="_password" isRequired>
           <FormLabel>Password</FormLabel>
           <inputGroup className="d-flex flex-col">
-            <div>
+            <div className="w-100">
               <input
                 className="p-2 w-100"
                 type={show ? "text" : "password"}
@@ -162,6 +194,13 @@ export default function SignUp() {
           </inputGroup>
         </FormControl>
 
+
+        <p className={showWarnP ? "badge text-danger" : "d-none"} style={{
+                position:"", zIndex:"2",
+                }}>
+                <p>minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1,
+                minSymbols: 1</p>
+              </p>
         {/* <FormControl id='pics'>
                     <FormLabel>
                         <input type="file" accept='image/' onChange={(e) => {
@@ -172,11 +211,14 @@ export default function SignUp() {
                 </FormControl> */}
 
         {loading == false ? (
-          <Button className="mt-3 text-dark" onClick={submitHandler}>
+          <Button className="mt-3 text-dark" onClick={submitHandler} disabled>
             SignUp
           </Button>
         ) : (
-          <div className="w-100">
+          <div
+            className="w-100"
+            style={{ justifyContent: "center", display: "flex" }}
+          >
             <LineWave color="grey" ariaLabel="line-wave" visible={true} />
           </div>
         )}
