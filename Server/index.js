@@ -32,7 +32,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://frontend:31000/",
+    origin: "ws://frontend:3000/",
   },
 });
 
