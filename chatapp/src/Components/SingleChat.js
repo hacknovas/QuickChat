@@ -10,7 +10,7 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://backend:8000/";
+const ENDPOINT = "/";
 var socket, selectedChatCompare;
 
 export default function SingleChat({ fetchAgain, setfetchAgain }) {
