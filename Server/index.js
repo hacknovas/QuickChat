@@ -1,12 +1,6 @@
-const socketIO = require("socket.io");
-const http=require("http");
 const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
-
-const server=http.createServer(app);
-const io=socketIO(server);
-
 const connectDB = require("./config/db");
 const userRoutes = require("./Routes/userRoutes");
 const chatRoutes = require("./Routes/chatRoutes");
@@ -35,6 +29,12 @@ const server = app.listen(PORT, () => {
   console.log(`server at ${PORT}`);
 });
 
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "ws://frontend:3000/",
+  },
+});
 
 io.on("connection", (socket) => {
   console.log("connected socket.io");
