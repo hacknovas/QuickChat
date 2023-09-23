@@ -29,12 +29,7 @@ const server = app.listen(PORT, () => {
   console.log(`server at ${PORT}`);
 });
 
-const io = require("socket.io")(server, {
-  pingTimeout: 60000,
-  cors: {
-    origin: "ws://frontend:3000/",
-  },
-});
+const io = require("socket.io")(server);
 
 io.on("connection", (socket) => {
   console.log("connected socket.io");
