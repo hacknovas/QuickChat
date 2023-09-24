@@ -26,19 +26,6 @@ export default function SignUp() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  let postDetails = (pics) => {
-    // setloading(true);
-    // if (pic === undefined) {
-    //     toast({
-    //         title: 'Please Select IMG.',
-    //         status: "Warning.",
-    //         duration: 5000,
-    //         isClosable: true,
-    //         position: "bottom"
-    //     })
-    // }
-  };
-
   const submitHandler = async () => {
     setloading(true);
     if (!name || !email || !password || !confpass) {
@@ -54,7 +41,7 @@ export default function SignUp() {
       return;
     }
 
-    if(!validator.isEmail(email)){
+    if (!validator.isEmail(email)) {
       toast({
         title: "Enter Valid Email",
         status: "warning",
@@ -67,9 +54,10 @@ export default function SignUp() {
       return;
     }
 
-    if(!validator.isStrongPassword(password)){
+    if (!validator.isStrongPassword(password)) {
       toast({
-        title: "Password Must be \n minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1",
+        title:
+          "Password Must be \n minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1",
         status: "warning",
         duration: 2000,
         isClosable: true,
@@ -128,7 +116,7 @@ export default function SignUp() {
         divider={<StackDivider borderColor="blue.200" />}
         spacing="5px"
         align="stretch"
-        >
+      >
         <FormControl id="name" isRequired>
           <FormLabel>Name</FormLabel>
           <input
@@ -147,7 +135,7 @@ export default function SignUp() {
             placeholder="Enter Email"
             type="email"
             onChange={(e) => {
-              setemail(e.target.value); 
+              setemail(e.target.value);
             }}
           ></input>
           <div className={showWarnE ? "badge badge-danger" : "d-none"}>
@@ -194,21 +182,18 @@ export default function SignUp() {
           </inputGroup>
         </FormControl>
 
-
-        <p className={showWarnP ? "badge text-danger" : "d-none"} style={{
-                position:"", zIndex:"2",
-                }}>
-                <p>minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1,
-                minSymbols: 1</p>
-              </p>
-        {/* <FormControl id='pics'>
-                    <FormLabel>
-                        <input type="file" accept='image/' onChange={(e) => {
-                            postDetails(e.target.files[0]);
-                        }}>
-                        </input>
-                    </FormLabel>
-                </FormControl> */}
+        <p
+          className={showWarnP ? "badge text-danger" : "d-none"}
+          style={{
+            position: "",
+            zIndex: "2",
+          }}
+        >
+          <p>
+            minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1,
+            minSymbols: 1
+          </p>
+        </p>
 
         {loading == false ? (
           <Button className="mt-3 text-dark" onClick={submitHandler} disabled>

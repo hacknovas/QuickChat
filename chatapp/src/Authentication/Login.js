@@ -62,7 +62,7 @@ export default function Login() {
       navigate("/chats");
     } catch (error) {
       toast({
-        title: "Error Occured!",
+        title: "Login Failed!",
         description: error.response.data.message,
         status: "error",
         duration: 5000,
@@ -122,14 +122,11 @@ export default function Login() {
           Sign in
         </Button>
       ) : (
-        <div className="w-100 "
-            style={{ justifyContent: "center",display:"flex" }}
+        <div
+          className="w-100 "
+          style={{ justifyContent: "center", display: "flex" }}
         >
-          <LineWave
-            color="grey"
-            ariaLabel="line-wave"
-            visible={true}
-          />
+          <LineWave color="grey" ariaLabel="line-wave" visible={true} />
         </div>
       )}
     </VStack>
