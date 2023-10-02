@@ -12,8 +12,8 @@ app.use(express.json());
 
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send(`Running at ${PORT}...`);
+app.get("/status", (req, res) => {
+  res.send(`Server running at Port:${PORT}...`);
 });
 
 app.use("/api/user", userRoutes);
@@ -26,7 +26,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`server at ${PORT}`);
+  console.log(`Server running at Port:${PORT}`);
 });
 
 const io = require("socket.io")(server, {

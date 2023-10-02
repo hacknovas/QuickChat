@@ -135,7 +135,6 @@ export default function SideDrawer() {
             <div className="mx-1">
               <Tooltip label="Search Users to chat">
                 <Button variant="ghost" onClick={onOpen}>
-                  <i className="fas fa-search"></i>
                   <Text
                     d={{ base: "none", md: "flex" }}
                     onClick={() => {
