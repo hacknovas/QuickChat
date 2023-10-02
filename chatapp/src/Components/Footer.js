@@ -14,14 +14,23 @@ export default function Footer() {
             />
           </div>
           <div>
-            <div style={{ fontSize: "0.9rem",margin:"0.5rem" }}>- Currently v1.1.0.</div>
+            <div style={{ fontSize: "0.9rem", margin: "0.5rem" }}>
+              - Currently v1.1.0.
+            </div>
           </div>
         </div>
 
         <div className="text-center" style={{ fontSize: "0.9rem" }}>
           <div>
             <a className="" style={{ textDecoration: "none" }}>
-              @HackNovas
+              Created By{" "}
+              <a
+                href="https://github.com/hacknovas"
+                stye={{ textDecoration: "none" }}
+                target="_blank"
+              >
+                <b>@HackNovas</b>
+              </a>
             </a>
           </div>
           <div>
@@ -29,7 +38,7 @@ export default function Footer() {
               href="mailto: creatives.doni@gmail.com"
               style={{ textDecoration: "none" }}
             >
-              creatives.doni@gmail.com
+              <b> creatives.doni@gmail.com </b>
             </a>
           </div>
         </div>

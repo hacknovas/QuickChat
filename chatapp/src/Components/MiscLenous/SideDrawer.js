@@ -126,10 +126,10 @@ export default function SideDrawer() {
             <div className="me-auto d-flex" style={{ cursor: "pointer" }}>
               <img
                 src="./logo.png"
-                alt="Talk-A-Tive"
+                alt="QuickChat"
                 style={{ height: "8vmin", display: "inline" }}
               />
-              <div className="container mt-3">Talk@Tive</div>
+              <div className="container mt-3">QuickChat</div>
             </div>
 
             <div className="mx-1">
