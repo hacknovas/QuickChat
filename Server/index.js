@@ -12,8 +12,8 @@ app.use(express.json());
 
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send(`Running at ${PORT}...`);
+app.get("/status", (req, res) => {
+  res.send(`Server running at PORT:${PORT}...`);
 });
 
 app.use("/api/user", userRoutes);
@@ -26,13 +26,12 @@ app.use(notFound);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(`server at ${PORT}`);
+  console.log(`Server running at PORT:${PORT}`);
 });
 
 const io = require("socket.io")(server);
 
 io.on("connection", (socket) => {
-  console.log("connected socket.io");
 
   socket.on("setup", (userData) => {
     socket.join(userData._id);

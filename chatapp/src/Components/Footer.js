@@ -20,8 +20,8 @@ export default function Footer() {
 
         <div className="text-center" style={{ fontSize: "0.9rem" }}>
           <div>
-            <a className="" style={{ textDecoration: "none" }}>
-              @HackNovas
+            <a href="https://github.com/hacknovas" className="" style={{ textDecoration: "none" }}>
+              <b>@HackNovas</b>
             </a>
           </div>
           <div>
@@ -29,7 +29,7 @@ export default function Footer() {
               href="mailto: creatives.doni@gmail.com"
               style={{ textDecoration: "none" }}
             >
-              creatives.doni@gmail.com
+              <b>creatives.doni@gmail.com</b>
             </a>
           </div>
         </div>

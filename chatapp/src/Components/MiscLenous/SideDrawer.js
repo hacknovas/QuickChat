@@ -46,7 +46,6 @@ export default function SideDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleSearch = async () => {
-    // setsearchResult([])
     if (!search) {
       toast({
         title: "Please Enter something in search",
@@ -81,7 +80,6 @@ export default function SideDrawer() {
       toast({
         title: "No match Found!",
         description: "Check email again...",
-        // status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom-left",
@@ -126,16 +124,15 @@ export default function SideDrawer() {
             <div className="me-auto d-flex" style={{ cursor: "pointer" }}>
               <img
                 src="./logo.png"
-                alt="Talk-A-Tive"
+                alt="QuickChat"
                 style={{ height: "8vmin", display: "inline" }}
               />
-              <div className="container mt-3">Talk@Tive</div>
+              <div className="container mt-3">QuickChat</div>
             </div>
 
             <div className="mx-1">
               <Tooltip label="Search Users to chat">
                 <Button variant="ghost" onClick={onOpen}>
-                  <i className="fas fa-search"></i>
                   <Text
                     d={{ base: "none", md: "flex" }}
                     onClick={() => {
@@ -149,14 +146,6 @@ export default function SideDrawer() {
             </div>
 
             <div className="mx-1">
-              {/* <Menu>
-                                <MenuButton p={1}>
-                                    <BellIcon fontSize="2xl" m={1} />
-                                    Bell Icon
-                                </MenuButton>
-
-                            </Menu> */}
-              {/* // */}
               <Menu>
                 <MenuButton as={Button} bg="white" rightIcon={""}>
                   <Avatar
