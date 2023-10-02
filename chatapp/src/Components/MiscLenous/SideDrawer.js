@@ -129,7 +129,9 @@ export default function SideDrawer() {
                 alt="QuickChat"
                 style={{ height: "8vmin", display: "inline" }}
               />
-              <div className="container mt-3">QuickChat</div>
+              <div className="container mt-3">
+                <b className="text-secondary">QuickChat</b>
+              </div>
             </div>
 
             <div className="mx-1">
@@ -148,14 +150,6 @@ export default function SideDrawer() {
             </div>
 
             <div className="mx-1">
-              {/* <Menu>
-                                <MenuButton p={1}>
-                                    <BellIcon fontSize="2xl" m={1} />
-                                    Bell Icon
-                                </MenuButton>
-
-                            </Menu> */}
-              {/* // */}
               <Menu>
                 <MenuButton as={Button} bg="white" rightIcon={""}>
                   <Avatar
