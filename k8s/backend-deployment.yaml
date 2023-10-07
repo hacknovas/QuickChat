@@ -27,7 +27,7 @@ spec:
         io.kompose.service: backend
     spec:
       containers:
-        - image: prathameshdoni/talkative_backend:latest
+        - image: prathameshdoni/quickchat_backend:latest
           name: backend
           ports:
             - containerPort: 8000
@@ -35,7 +35,7 @@ spec:
               protocol: TCP
           resources: {}
           volumeMounts:
-            - mountPath: /home/vector/Desktop/MyGitRepoProj/TalkATive_Data/back_data
+            - mountPath: /home/vector/Desktop/MyGitRepoProj/quickchat_Data/back_data
               name: b-volume
       restartPolicy: Always
       volumes:
