@@ -8,9 +8,9 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - talkative_nw
+      - quickchat_nw
     volumes:
-      - f_volume:/home/vector/Desktop/MyGitRepoProj/TalkATive_Data/front_data
+      - f_volume:/home/vector/Desktop/MyGitRepoProj/quickchat_Data/front_data
     depends_on:
       - backend
   backend:
@@ -21,12 +21,12 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - talkative_nw
+      - quickchat_nw
     volumes:
-      - b_volume:/home/vector/Desktop/MyGitRepoProj/TalkATive_Data/back_data
+      - b_volume:/home/vector/Desktop/MyGitRepoProj/quickchat_Data/back_data
 
 networks:
-  talkative_nw:
+  quickchat_nw:
 
 volumes:
   f_volume:
