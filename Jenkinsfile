@@ -11,15 +11,15 @@ pipeline{
         stage("git checkout"){
             steps{
                 echo "From Github"
-                git url:"https://github.com/hacknovas/TalkATive.git",branch: "devOps"
+                git url:"https://github.com/hacknovas/QuickChat.git",branch: "devOps"
             }
         }
         
         stage("Build Image"){
             steps{
                 echo "Building Images"
-                sh "docker build -t prathameshdoni/talkative_frontend:${buid_number} . -f Dockerfile1"
-                sh "docker build -t prathameshdoni/talkative_backend:${buid_number} . -f Dockerfile2"
+                sh "docker build -t prathameshdoni/quickchat_frontend:${buid_number} . -f Dockerfile1"
+                sh "docker build -t prathameshdoni/quickchat_backend:${buid_number} . -f Dockerfile2"
             }
         }
         
@@ -28,11 +28,11 @@ pipeline{
                 withCredentials([usernamePassword(credentialsId:"DockerHub",passwordVariable:"pass1",usernameVariable:"user1")]){
                     echo "pushing to docker hub"
                     sh "docker login -u ${user1} -p ${pass1}"
-                    sh "docker push prathameshdoni/talkative_frontend:${buid_number}"
-                    sh "docker push prathameshdoni/talkative_backend:${buid_number}"
+                    sh "docker push prathameshdoni/quickchat_frontend:${buid_number}"
+                    sh "docker push prathameshdoni/quickchat_backend:${buid_number}"
                     
-                    sh "docker rmi prathameshdoni/talkative_frontend:${buid_number} --force"
-                    sh "docker rmi prathameshdoni/talkative_backend:${buid_number} --force"
+                    sh "docker rmi prathameshdoni/quickchat_frontend:${buid_number} --force"
+                    sh "docker rmi prathameshdoni/quickchat_backend:${buid_number} --force"
                 }
             }
         }
