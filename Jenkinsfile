@@ -11,7 +11,7 @@ pipeline{
         stage("git checkout"){
             steps{
                 echo "From Github"
-                git url:"https://github.com/hacknovas/TalkATive.git",branch: "devOps"
+                it url:"https://github.com/hacknovas/TalkATive.git",branch: "devOps"
             }
         }
         
