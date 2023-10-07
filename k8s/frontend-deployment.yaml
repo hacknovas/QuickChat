@@ -27,7 +27,7 @@ spec:
         io.kompose.service: frontend
     spec:
       containers:
-        - image: prathameshdoni/talkative_frontend:latest
+        - image: prathameshdoni/quickchat_frontend:latest
           name: frontend
           ports:
             - containerPort: 3000
@@ -35,7 +35,7 @@ spec:
               protocol: TCP
           resources: {}
           volumeMounts:
-            - mountPath: /home/vector/Desktop/MyGitRepoProj/TalkATive_Data/front_data
+            - mountPath: /home/vector/Desktop/MyGitRepoProj/quickchat_Data/front_data
               name: f-volume
       restartPolicy: Always
       volumes:
