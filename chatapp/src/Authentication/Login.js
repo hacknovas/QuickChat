@@ -4,7 +4,6 @@ import {
   FormControl,
   useToast,
   FormLabel,
-  Input,
   InputGroup,
   InputRightElement,
   StackDivider,
@@ -73,6 +72,26 @@ export default function Login() {
     }
   };
 
+  const submitOTPHandler = async () => {
+    try {
+      const response = await axios.post(
+        "api/user/verify",
+        {
+          email,
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.status);
+    } catch (error) {
+      console.log("errorrr");
+    }
+  };
+
   return (
     <VStack
       divider={<StackDivider borderColor="gray.200" />}
@@ -117,6 +136,9 @@ export default function Login() {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+      <button>
+        <div onClick={submitOTPHandler}>Sign in with OTP</div>
+      </button>
       {loading == false ? (
         <Button className=" text-dark" onClick={submitHandler}>
           Sign in

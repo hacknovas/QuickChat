@@ -1,6 +1,9 @@
 const asyncHandler = require("express-async-handler");
+const otpGenerator = require("otp-generator");
+const nodeMailer = require("nodemailer");
 const User = require("../models/userModel");
 const generateTokent = require("../config/generateToken");
+const otpModel = require("../models/otpVerification");
 
 const registerUser = async (req, res) => {
   try {
@@ -69,4 +72,54 @@ const allUsers = asyncHandler(async (req, res) => {
   res.send(users);
 });
 
-module.exports = { registerUser, authuser, allUsers };
+const otpRegister = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error("User Not Found");
+    }
+
+    const otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
+    });
+
+    const result = new otpModel({
+      email,
+      otp,
+    });
+
+    await result.save();
+
+    const mailer = nodeMailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.user,
+        pass: process.env.pass,
+      },
+    });
+
+    await mailer.sendMail({
+      from: "creatives.doni@gmail.com",
+      to: email,
+      subject: "Test Mail",
+      text: `Hi! There, You have recently visited  
+      our website and entered your email. 
+      Just Login with Given OTP: \n
+      ${otp}
+      \nThanks`,
+    });
+
+    res.status(200).send({
+      message: "Email Sent Successfuly",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Failed Authentication.");
+  }
+};
+
+module.exports = { registerUser, authuser, allUsers, otpRegister };
